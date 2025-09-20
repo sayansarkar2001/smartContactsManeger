@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="base :: Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+
+<body>
+<section class="banar d-flex justify-content-center align-items-center">
+<div class="text-center">
+    <h1>Smart Contacts Maneger</h1>
+    <p>Your personal hub to store, organize, and manage all your important connections — secure, simple, and always at your fingertips.</p>
+    <a class="btn bg-primary btn-lg text-white" th:href="@{/user/userDashboard}">Get Started</a>
+    </div>
+</section>
+</body>
+</html>

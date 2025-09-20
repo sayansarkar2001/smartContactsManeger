@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="normal/base :: Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+</head>
+
+<body>
+<section class="addContactBanar">
+    
+    <!-- 
+<h1>User Name: <span th:text="${user.name}"></span></h1>
+<h1>User Email: <span th:text="${user.email}"></span></h1>
+ -->
+ 
+ <div class="container2">
+ 
+  
+ <div th:if="${message != null and message.type == 'alert-error'}"
+     class="alert alert-danger" role="alert">
+    <span th:text="${message.message}">error</span>
+</div>
+
+
+<div th:if="${message != null and message.type == 'alert-success'}"
+     class="alert alert-success" role="alert">
+    <span th:text="${message.message}">success</span>
+   
+</div>
+
+ <h1 class="text-center">Add Contact</h1>
+ 
+
+<form 
+th:action="@{/user/process-contact}" th:object="${contacts}" method="post" enctype="multipart/form-data"
+>
+
+    <!-- Name -->
+    <div class="form-group mb-3">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa-solid fa-user"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Enter Name" name="name" required 
+         >
+      </div>
+    </div>
+
+    <!-- Nickname -->
+    <div class="form-group mb-3">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa-solid fa-user-tag"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Enter Nick Name (Optional)" name="nickName">
+      </div>
+    </div>
+
+    <!-- Work -->
+    <div class="form-group mb-3">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa-solid fa-briefcase"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Enter Work (Optional)" name="work" >
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group mb-3">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa-solid fa-envelope"></i>
+        </span>
+        <input type="email" class="form-control" placeholder="Enter Email" name="email" required>
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group mb-3">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa-solid fa-phone"></i>
+        </span>
+        <input type="tel" class="form-control" placeholder="Enter Phone Number" name="phone"  required  pattern="(\+91)?[6-9][0-9]{9}" 
+         title="Phone number must be 10 digits">
+      </div>
+    </div>
+    
+    <!-- Profile Image Upload -->
+    <div class="form-group mb-3">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa-solid fa-image"></i>
+        </span>
+        <input type="file" class="form-control" name="image" accept="image/*">
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group mb-3">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fa-solid fa-align-left"></i>
+        </span>
+       <!--   id="myeditor" add if you want to use TinyMCE-->
+        <textarea id="myeditor1" class="form-control" rows="3" placeholder="Enter Description (Optional)" name="description"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center mb-3">
+      <button type="submit" class="btn btn-primary w-35">
+        <i class="fa-solid fa-plus"></i> Add Contact
+      </button>
+    </div>
+
+
+
+    
+<!--  
+  <div class="form-group mb-3">
+  
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Name" name="name">
+  </div>
+  <div class="form-group mb-3">
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Nick Name (Optional)" name="nickName">
+  </div>
+  <div class="form-group mb-3">
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter work" name="work">
+  </div>
+  <div class="form-group mb-3">
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Email" name="email">
+  </div>
+  <div class="form-group mb-3">
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Phone Number" name="phone">
+  </div>
+  <div class="form-group  mb-3">
+    <label for="exampleFormControlFile1">Upload Photo</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" >
+  </div>
+  
+  <div class="form-group mb-3">
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Description" name="description"></textarea>
+  </div>
+
+  
+<div class="text-center mb-3">
+  <button type="submit" class="btn btn-primary w-35">Save Contact</button>
+  </div>
+  -->
+  
+  
+  </form>
+
+</div>
+<script src="https://cdn.tiny.cloud/1/z4s71b1amhhuoyixql5j1ldd6sxfd2omh4f8ob8yzxeqpmsf/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: '#myeditor',
+    width: '100%',
+    plugins: 'lists link image table code', // enables extra features (bullet lists, links, images, tables, source code view)
+    toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright | bullist numlist | link image',
+    menubar: false             // hides the default menubar (File, Edit, View, etc.)
+
+   
+   
+  });
+</script>
+
+</section>
+</body>
+</html>

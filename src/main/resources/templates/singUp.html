@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+     th:replace="~{base :: Layout(~{::section})}"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sing Up</title>
+</head>
+
+<body>
+<section class="singUpBanar d-flex justify-content-center align-items-center">
+
+<div class="container">
+
+<div th:if="${session.message != null and session.message.type == 'alert-error'}"
+     class="alert alert-danger" role="alert">
+    <span th:text="${session.message.message}">error</span>
+</div>
+
+<div th:if="${session.message != null and session.message.type == 'alert-success'}"
+     class="alert alert-success" role="alert">
+    <span th:text="${session.message.message}">success</span>
+</div>
+
+<div th:if="${messageError}"
+     class="alert alert-danger" role="alert">
+    <span th:text="${message}"></span>
+</div>
+
+<!--<h1>Register</h1>-->
+<h4 class="text-center">Welcome to <span>Smart Contacts Manager</span></h4>
+<p class="text-center " style="color:#C2B6B4">Sign up to start your journey with us</p>
+
+<form th:action="@{/do_register}" method="post"  th:object=${user}>
+  <div class="mb-3">
+    <label for="exampleInputName" class="form-label">Name</label>
+    <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp" name="name" th:value=${user.name} required >
+   
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" th:value=${user.email} required >
+   
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required >
+  </div>
+  <div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">About you</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter something about yourself" name="about" th:value=${user.about}></textarea>
+</div>
+<div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="agreement">
+    <label class="form-check-label" for="exampleCheck1">Agree to Terms and Conditions</label>
+    <p style="color:red;" th:text="${TandC}"></p>
+  </div>
+ <div class="text-center">
+  <button type="submit" class="btn btn-primary w-100">Sign up</button>
+  </div>
+</form>
+<div class="text-start mt-3">
+    <p>Already have an account? 
+       <a th:href="@{/login}">Login here</a>
+    </p>
+  </div>
+
+</div>
+</section>
+</body>
+</html>

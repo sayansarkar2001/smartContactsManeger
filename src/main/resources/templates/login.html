@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+     th:replace="~{base :: Layout(~{::section})}"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Login Page</title>
+</head>
+
+<body>
+<section class="loginBanar d-flex justify-content-center align-items-center">
+
+<div class="container">
+
+<div th:if="${param.error}"
+     class="alert alert-danger" role="alert">
+    <span >Invalid email or password!</span>
+</div>
+
+<div th:if="${param.logout}"
+     class="alert alert-success" role="alert">
+    <span >You have been logged out successfully.</span>
+</div>
+
+<div th:if="${message}"
+     class="alert alert-success" role="alert">
+    <span th:text="${message}"></span>
+</div>
+
+<h4 class="text-center">Welcome to <span>Smart Contacts Manager</span></h4>
+<p class="text-center " style="color:#C2B6B4">Sign up to start your journey with us</p>
+
+<form th:action="@{/do_login}" method="post"  >
+ 
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"  required >
+   
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required >
+  </div>
+  
+  <br><br>
+ 
+
+ <div class="text-center">
+  <button type="submit" class="btn btn-primary w-100">Login</button>
+  </div>
+</form>
+
+<!-- ✅ Forgot Password link -->
+  <div class="text-start mt-3">
+   
+       <a th:href="@{/resetPassword}">Forgot Password</a>
+    
+  </div>
+ <!-- ✅ Register link -->
+  <div class="text-start mt-3">
+    <p>Don't have an account? 
+       <a th:href="@{/register}">Register here</a>
+    </p>
+  </div>
+
+
+</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base :: Layout(~{::section})">
+
+<head>
+<meta charset="UTF-8">
+<title>Contact Details</title>
+</head>
+
+<body>
+
+	<section class="contactDetailsBanar">
+		<div class="container"
+			style="max-width: 100%; max-height: 100%; background: transparent !important;">
+			<!-- Title -->
+			<h1 class="text-center mb-5 fw-bold text-primary">Contact
+				Details</h1>
+
+			<div class="row align-items-center" th:if=${contact}>
+				<!-- Contact Image -->
+				<div class="col-md-4 text-center">
+					<img th:src="@{'/uploads/' + ${contact.imageURL}}"
+						style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%;"
+						alt="Contact Image">
+					<h2 class="mt-3 fw-bold " th:text="${contact.name}"></h2>
+				</div>
+
+				<!-- Contact Info -->
+				<div class="col-md-8">
+					<p class="fs-5">
+						<strong style="color: #78CCBD;">Nickname:</strong> <span
+							th:text="${contact.nickName}"></span>
+					</p>
+					<p class="fs-5">
+						<strong style="color: #78CCBD;">Email:</strong> <span
+							th:text="${contact.email}"></span>
+					</p>
+					<p class="fs-5">
+						<strong style="color: #78CCBD;">Phone:</strong> <span
+							th:text="${contact.phone}"></span>
+					</p>
+					<p class="fs-5">
+						<strong style="color: #78CCBD;">Work:</strong> <span
+							th:text="${contact.work}"></span>
+					</p>
+					<p class="fs-5">
+						<strong style="color: #78CCBD;">Description:</strong> <span
+							th:text="${contact.description}"></span>
+					</p>
+
+					<a th:href="@{/user/show-contact/{page}(page=${param.page})}"
+						class="btn btn-primary mt-3">Back to Contacts</a>
+				</div>
+
+				<!-- Bottom Action Buttons -->
+				<div class="text-center mt-5 mb-5">
+					<!--  <a th:href="@{/user/show-contact/updateContact/{id}(id=${contact.cid})}" class="btn btn-warning me-2 w-25">Update</a>-->
+					<form
+						th:action="@{/user/show-contact/updateContact/{cid}(cid=${contact.cid})}"
+						method="post" style="display: inline;">
+						<button type="submit" class="btn btn-warning me-2 w-25">Update</button>
+					</form>
+					<a th:onclick="|confirmDelete(${contact.cid})|"
+						class="btn btn-danger w-25">Delete</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+</body>
+</html>

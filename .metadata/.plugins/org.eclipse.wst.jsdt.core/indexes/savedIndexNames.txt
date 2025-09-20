@@ -1,0 +1,1 @@
+INDEX VERSION 1.4+F:\Users\Documents\Spring\SpringBoot\smartContactsManeger\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
