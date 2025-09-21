@@ -86,7 +86,7 @@ public class PaymentController {
 		       currOrder.setRazorpaySignature(verifyPaymentdata.get("razorpay_signature").toString());
 		       currOrder.setStatus("Paid");
 		       
-		       ordersRepo.save(currOrder);
+		       ordersRepo.save(currOrder);//save order
 		       
 		        return true;
 		    } 
